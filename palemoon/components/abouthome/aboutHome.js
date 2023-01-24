@@ -8,7 +8,8 @@
 var gInitialized = false;
 var gObserver = new MutationObserver(function (mutations) {
   for (let mutation of mutations) {
-    if (mutation.attributeName == "searchEngineURL") {
+    if (mutation.attributeName == "searchEngineURL" ||
+        mutation.attributeName == "searchEngineLogo") {
       setupSearchEngine();
       if (!gInitialized) {
         gInitialized = true;
@@ -98,11 +99,20 @@ function setupSearchEngine()
   });
  
   let searchEngineName = document.documentElement.getAttribute("searchEngineName");
+  let searchEngineLogoURL = null;
+  if (document.documentElement.hasAttribute("searchEngineLogo")) {
+    searchEngineLogoURL = document.documentElement.getAttribute("searchEngineLogo");
+  }
   let searchEngineInfo = SEARCH_ENGINES[searchEngineName];
   let logoElt = document.getElementById("searchEngineLogo");
 
   // Add search engine logo.
-  if (searchEngineInfo && searchEngineInfo.image) {
+  if (searchEngineLogoURL != null) {
+    logoElt.parentNode.hidden = false;
+    logoElt.src = searchEngineLogoURL;
+    logoElt.alt = searchEngineName;
+    searchText.placeholder = "";
+  } else if (searchEngineInfo && searchEngineInfo.image) {
     logoElt.parentNode.hidden = false;
     logoElt.src = searchEngineInfo.image;
     logoElt.alt = searchEngineName;
