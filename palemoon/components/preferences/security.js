@@ -195,20 +195,8 @@ var gSecurityPane = {
   _removeMasterPassword: function ()
   {
     const Cc = Components.classes, Ci = Components.interfaces;
-    var secmodDB = Cc["@mozilla.org/security/pkcs11moduledb;1"].
-                   getService(Ci.nsIPKCS11ModuleDB);
-    if (secmodDB.isFIPSEnabled) {
-      var promptService = Cc["@mozilla.org/embedcomp/prompt-service;1"].
-                          getService(Ci.nsIPromptService);
-      var bundle = document.getElementById("bundlePreferences");
-      promptService.alert(window,
-                          bundle.getString("pw_change_failed_title"),
-                          bundle.getString("pw_change2empty_in_fips_mode"));
-    }
-    else {
-      document.documentElement.openSubDialog("chrome://mozapps/content/preferences/removemp.xul",
-                                             "", null);
-    }
+    document.documentElement.openSubDialog("chrome://mozapps/content/preferences/removemp.xul",
+                                           "", null);
     this._initMasterPasswordUI();
   },
 
