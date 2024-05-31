@@ -2433,6 +2433,13 @@ function BrowserOnAboutPageLoad(doc) {
       docElt.setAttribute("searchEngineName", engine.name);
       docElt.setAttribute("searchEnginePostData", engine.postDataString || "");
       docElt.setAttribute("searchEngineURL", engine.searchURL);
+      engine.logo.then(value => {
+        if (value != null) {
+          docElt.setAttribute("searchEngineLogo", value);
+        } else if (docElt.hasAttribute("searchEngineLogo")) {
+          docElt.removeAttribute("searchEngineLogo");
+        }
+      });
     }
     Services.search.init(updateSearchEngine);
 
@@ -2458,6 +2465,13 @@ function BrowserOnAboutPageLoad(doc) {
       docElt.setAttribute("searchEngineName", engine.name);
       docElt.setAttribute("searchEnginePostData", engine.postDataString || "");
       docElt.setAttribute("searchEngineURL", engine.searchURL);
+      engine.logo.then(value => {
+        if (value != null) {
+          docElt.setAttribute("searchEngineLogo", value);
+        } else if (docElt.hasAttribute("searchEngineLogo")) {
+          docElt.removeAttribute("searchEngineLogo");
+        }
+      });
     }
     Services.search.init(updateSearchEngine);
 
