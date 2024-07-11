@@ -18,6 +18,8 @@ pref("nglayout.initialpaint.delay", 300);
 pref("image.mem.max_ms_before_yield", 50);
 pref("image.mem.decode_bytes_at_a_time", 65536);
 
+pref("geo.wifi.uri", "http://ip-api.com/json/?fields=lat,lon,status,message");
+
 pref("services.sync.serverURL","https://pmsync.palemoon.org/sync/index.php/");
 pref("services.sync.jpake.serverURL","https://keyserver.palemoon.org/");
 pref("services.sync.termsURL", "http://www.palemoon.org/sync/terms.shtml");
