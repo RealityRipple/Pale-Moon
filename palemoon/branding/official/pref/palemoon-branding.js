@@ -15,7 +15,7 @@ pref("general.useragent.updates.retry", 7200);     // Retry getting update every
 pref("general.useragent.updates.url", "https://dua.palemoon.org/?app=palemoon&version=%APP_VERSION%&channel=%CHANNEL%");
 
 // Geolocation
-pref("geo.wifi.uri", "https://pro.ip-api.com/json/?fields=lat,lon,status,message&key=K3TirHYiysBjnmD");
+pref("geo.wifi.uri", "https://pro.ip-api.com/json/?fields=lat,lon,status,message&key=0tn5Ha0z0bfLc0b");
 
 // ========================= updates ========================
 #if defined(XP_WIN) || defined(XP_LINUX)
