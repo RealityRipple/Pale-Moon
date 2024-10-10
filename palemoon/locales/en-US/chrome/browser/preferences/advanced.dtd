@@ -56,7 +56,9 @@
 <!ENTITY connectionSettings.label        "Settings…">
 <!ENTITY connectionSettings.accesskey    "e">
 
-<!ENTITY DNS.label                       "DNS">
+<!ENTITY prefetch.label                  "Prefetching">
+<!ENTITY enablePreload.label             "Preload page content">
+<!ENTITY enablePreload.accesskey         "c">
 <!ENTITY enableDNSPrefetch.label         "Prefetch DNS lookups">
 <!ENTITY enableDNSPrefetch.accesskey     "P">
 

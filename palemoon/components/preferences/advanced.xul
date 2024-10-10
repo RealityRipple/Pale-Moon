@@ -43,7 +43,8 @@
       <preference id="pref.general.captiveportal" name="network.captive-portal-service.enabled" type="bool"/>
 
       <!-- Network tab -->
-      <preference id="network.dns.prefetch"            name="network.dns.disablePrefetch"     type="bool"   inverted="true"/>
+      <preference id="network.prefetch.preload"        name="network.preload"                 type="bool"/>
+      <preference id="network.prefetch.dns"            name="network.dns.disablePrefetch"     type="bool"   inverted="true"/>
       
       <!-- Cache tab -->
       <preference id="browser.cache.disk.capacity"     name="browser.cache.disk.capacity"     type="int"/>
@@ -209,13 +210,17 @@
             </hbox>
           </groupbox>
           
-          <!-- DNS settings -->
-          <groupbox id="DNSGroup">
-            <caption label="&DNS.label;"/>
+          <!-- Prefetch settings -->
+          <groupbox id="PrefetchGroup">
+            <caption label="&prefetch.label;"/>
+            <checkbox id="enablePreload"
+                      label="&enablePreload.label;"
+                      accesskey="&enablePreload.accesskey;"
+                      preference="network.prefetch.preload"/>
             <checkbox id="enableDNSPrefetch"
                       label="&enableDNSPrefetch.label;"
                       accesskey="&enableDNSPrefetch.accesskey;"
-                      preference="network.dns.prefetch"/>
+                      preference="network.prefetch.dns"/>
           </groupbox>
         </tabpanel>
 
