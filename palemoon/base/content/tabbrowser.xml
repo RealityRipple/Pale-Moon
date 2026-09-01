@@ -2134,6 +2134,9 @@
             this._outerWindowIDBrowserMap.delete(browser.outerWindowID);
 
             if (Services.prefs.getBoolPref("browser.ghostbuster.enabled", true)) {
+              try {
+                browser.docShell.allowJavascript = false;
+              } catch(e) { }
               Cu.unlinkGhostWindows();
 #ifdef DEBUG
               dump("Unlinking ghost windows has run on tab close.\n");
