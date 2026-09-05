@@ -124,7 +124,9 @@
 #endif
 #if defined(MOZ_GTK3) && defined(MOZ_ENABLE_NPAPI)
 @BINPATH@/@DLL_PREFIX@mozgtk@DLL_SUFFIX@
+#ifdef MOZ_ENABLE_NPAPI_GTK2
 @BINPATH@/gtk2/@DLL_PREFIX@mozgtk@DLL_SUFFIX@
+#endif
 #endif
 #if defined(XP_WIN) && defined(MOZ_MIMALLOC)
 @BINPATH@/mimalloc*@DLL_SUFFIX@
