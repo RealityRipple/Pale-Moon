@@ -1306,7 +1306,7 @@ BrowserGlue.prototype = {
   },
 
   _migrateUI: function() {
-    const UI_VERSION = 27;
+    const UI_VERSION = 28;
     const BROWSER_DOCURL = "chrome://browser/content/browser.xul#";
     let currentUIVersion = 0;
     try {
@@ -1571,6 +1571,11 @@ BrowserGlue.prototype = {
     if (currentUIVersion < 27) {
       // Clear hardware decoding failure flag to re-test. (UXP #1898)
       Services.prefs.clearUserPref("media.hardware-video-decoding.failed");
+    }
+    
+    if (currentUIVersion < 28) {
+      // Clear ghostbuster pref. (UXP #3179)
+      Services.prefs.clearUserPref("browser.ghostbuster.enabled");
     }
     
     // Clear out dirty storage
