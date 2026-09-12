@@ -18,11 +18,61 @@ this.AboutHomeUtils = {
     let defaultEngine = Services.search.defaultEngine;
     let submission = defaultEngine.getSubmission("_searchTerms_", null, "homepage");
   
-    return Object.freeze({
+    let ret = {
       name: defaultEngine.name,
       searchURL: submission.uri.spec,
-      postDataString: submission.postDataString
+      postDataString: submission.postDataString,
+      logo: new Promise((resolve, reject) => { resolve(null); })
+    };
+
+    let ico64 = null;
+    ico64 = defaultEngine.getIconURLBySize(64, 64);
+    if (ico64 != null) {
+      ret.logo = new Promise((resolve, reject) => { resolve(ico64); });
+      return Object.freeze(ret);
+    }
+
+    let ico16 = defaultEngine.getIconURLBySize(16, 16);
+    if (ico16 == null) {
+      return Object.freeze(ret);
+    }
+
+    let pLogo = new Promise((resolve, reject) => {
+      let listener = {
+        sizeAvailable: function(aXImg) {
+          if (aXImg.image.width < 32 || aXImg.image.height < 32) {
+            resolve(null);
+            return;
+          }
+          resolve(ico16);
+        }
+      };
+      let icoObs = Components.classes["@mozilla.org/image/tools;1"].
+                   getService(Components.interfaces.imgITools).
+                   createScriptedObserver(listener);
+      let icoURI = Components.classes["@mozilla.org/network/io-service;1"].
+                   getService(Components.interfaces.nsIIOService).
+                   newURI(ico16, null, null);
+      let icoXImg = Components.classes["@mozilla.org/image/loader;1"].
+                    getService(Components.interfaces.imgILoader).
+                    loadImageXPCOM(icoURI, null, null,
+                                   "default", null, null,
+                                   icoObs, null, 0, null);
+      if (icoXImg == null) {
+        resolve(null);
+        return;
+      }
+      if (icoXImg.imageStatus > 0) {
+        if (icoXImg.image.width < 32 || icoXImg.image.height < 32) {
+          resolve(null);
+          return;
+        }
+        resolve(ico16);
+      }
     });
+
+    ret.logo = pLogo;
+    return Object.freeze(ret);
   },
 
   /*
