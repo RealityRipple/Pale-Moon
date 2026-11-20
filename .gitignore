@@ -50,6 +50,9 @@ parser/html/java/javaparser/
 .cproject
 .settings/
 
+# Ignore the Visual Studio meta directory
+.vs/
+
 # Python virtualenv artifacts.
 python/psutil/*.so
 python/psutil/*.pyd
